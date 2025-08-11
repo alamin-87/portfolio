@@ -9,6 +9,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import Contact from "./Contact";
 import Projects from "./Projects";
 
+const CV_URL = "https://drive.google.com/uc?export=download&id=1O1Yt4w1p2ffgFjJjQxR-C5-F7oPYxMoG";
+
 const Portfolio = () => {
   const navLinks = [
     { name: "Home", href: "#home" },
@@ -18,6 +20,19 @@ const Portfolio = () => {
     { name: "Contact", href: "#contact" },
   ];
   const [isOpen, setIsOpen] = useState(false);
+
+  // Download CV handler
+  const handleDownloadCV = (e) => {
+    e.preventDefault();
+    const link = document.createElement("a");
+    link.href = CV_URL;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.download = "MD_AL-AMIN_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <>
@@ -42,13 +57,14 @@ const Portfolio = () => {
             ))}
           </ul>
 
-          {/* User Image */}
+          {/* Download CV Button (replaces user image) */}
           <div className="hidden md:block">
-            <img
-              src={me}
-              alt="User"
-              className="h-9 w-9 rounded-full object-cover border-2 border-blue-500"
-            />
+            <button
+              onClick={handleDownloadCV}
+              className="px-4 py-2 bg-blue-500 text-white rounded-full font-semibold shadow hover:bg-blue-600 transition"
+            >
+              Download CV
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -76,11 +92,12 @@ const Portfolio = () => {
                 </li>
               ))}
               <li>
-                <img
-                  src={me}
-                  alt="User"
-                  className="h-9 w-9 rounded-full object-cover border-2 border-blue-500"
-                />
+                <button
+                  onClick={handleDownloadCV}
+                  className="w-full px-4 py-2 bg-blue-500 text-white rounded-full font-semibold shadow hover:bg-blue-600 transition"
+                >
+                  Download CV
+                </button>
               </li>
             </ul>
           </div>

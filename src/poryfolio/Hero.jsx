@@ -5,7 +5,23 @@ import { HiArrowNarrowRight } from "react-icons/hi";
 import image from "../assets/image.png";
 import { FaDownload, FaLinkedin, FaGithub, FaXTwitter } from "react-icons/fa6";
 
+const CV_URL = "https://drive.google.com/uc?export=download&id=1O1Yt4w1p2ffgFjJjQxR-C5-F7oPYxMoG";
+
 const Hero = () => {
+  // Download CV handler
+  const handleDownloadCV = (e) => {
+    e.preventDefault();
+    // Use a hidden anchor to trigger download (works best for Google Drive direct links)
+    const link = document.createElement("a");
+    link.href = CV_URL;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.download = "MD_AL-AMIN_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section
       id="home"
@@ -40,7 +56,7 @@ const Hero = () => {
           {/* Social Media Links */}
           <div className="flex space-x-4">
             <a
-              href="https://www.linkedin.com/in/your-linkedin"
+              href="https://www.linkedin.com/in/alamin87/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-blue-500 text-2xl"
@@ -48,7 +64,7 @@ const Hero = () => {
               <FaLinkedin />
             </a>
             <a
-              href="https://github.com/your-github"
+              href="https://github.com/alamin-87"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-gray-400 text-2xl"
@@ -56,7 +72,7 @@ const Hero = () => {
               <FaGithub />
             </a>
             <a
-              href="https://twitter.com/your-x-handle"
+              href="https://x.com/MdAlaminHo21126"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-blue-400 text-2xl"
@@ -66,14 +82,13 @@ const Hero = () => {
           </div>
 
           {/* CV Download Button */}
-          <a
-            href="https://drive.google.com/file/d/1O1Yt4w1p2ffgFjJjQxR-C5-F7oPYxMoG/view"
-            download
+          <button
+            onClick={handleDownloadCV}
             className="btn btn-primary gap-2 text-white"
           >
             <FaDownload />
             Download CV
-          </a>
+          </button>
         </motion.div>
 
         {/* Right Image and Text */}

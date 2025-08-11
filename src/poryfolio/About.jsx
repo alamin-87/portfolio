@@ -14,7 +14,21 @@ const fadeRight = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
 };
 
+const CV_URL = "https://drive.google.com/uc?export=download&id=1O1Yt4w1p2ffgFjJjQxR-C5-F7oPYxMoG";
+
 const About = () => {
+  // Download CV handler
+  const handleDownloadCV = (e) => {
+    e.preventDefault();
+    // Create a hidden link and trigger click for direct download
+    const link = document.createElement("a");
+    link.href = CV_URL;
+    link.setAttribute("download", "MD_AL-AMIN_CV.pdf");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section
       id="about"
@@ -81,15 +95,14 @@ const About = () => {
           </motion.div>
 
           {/* Download CV Button */}
-          <motion.a
+          <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            href="https://drive.google.com/file/d/1O1Yt4w1p2ffgFjJjQxR-C5-F7oPYxMoG/view"
-            download
-            className="btn btn-primary text-white gap-2"
+            onClick={handleDownloadCV}
+            className="btn btn-primary text-white gap-2 flex items-center"
           >
             <FaDownload /> Download CV
-          </motion.a>
+          </motion.button>
         </motion.div>
       </motion.div>
     </section>

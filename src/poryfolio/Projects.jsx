@@ -1,31 +1,36 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import GardeningHub from "../assets/Gardening Hub.jpeg";
+import FoodSharing from "../assets/Food Sharing.jpeg";
+import EnglishDictionary from "../assets/English Dictionary.jpeg";
 
 const projects = [
   {
     title: "Gardening Hub",
     description:
       "A community platform where users can share gardening tips, explore ideas, and connect with top gardeners.",
-    image: "/images/gardening.jpg",
+    image: GardeningHub,
     liveLink: "https://gardening-hub.netlify.app/",
     githubLink: "https://github.com/alamin-87/b11a10-client-site",
+    serverLink: "https://github.com/alamin-87/gardening-server-store", // Added server link
     tag: "Community App",
   },
   {
     title: "Food Sharing",
     description:
       "Share leftover food with others, request meals, and reduce waste while helping your community.",
-    image: "/images/foodsharing.jpg",
+    image: FoodSharing,
     liveLink: "https://food-sharing.netlify.app/",
-    githubLink: "https://github.com/youruser/food-sharing",
+    githubLink: "https://github.com/alamin-87/food-sharing-client-site",
+    serverLink: "https://github.com/alamin-87/food-sharing-server-site", // Added server link
     tag: "Social Good",
   },
   {
     title: "English Dictionary",
     description:
       "Search for word meanings, examples, synonyms, and more in this simple English learner’s dictionary app.",
-    image: "/images/dictionary.jpg",
+    image: EnglishDictionary,
     liveLink: "https://dictionary.example.com",
     githubLink: "https://github.com/youruser/english-dictionary",
     tag: "Educational Tool",
@@ -34,7 +39,7 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section className="bg-black text-white py-16 px-4 md:px-12">
+    <section id="projects" className="bg-black text-white py-16 px-4 md:px-12">
       <h2 className="text-4xl font-bold text-center mb-12">My Projects</h2>
 
       <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
@@ -75,8 +80,19 @@ const Projects = () => {
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 border border-yellow-500 text-yellow-500 rounded-md font-semibold hover:bg-yellow-500 hover:text-black transition"
                 >
-                  GitHub <FaGithub />
+                  Client <FaGithub />
                 </a>
+                {/* Show server link if available */}
+                {project.serverLink && (
+                  <a
+                    href={project.serverLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 border border-yellow-500 text-yellow-500 rounded-md font-semibold hover:bg-yellow-500 hover:text-black transition"
+                  >
+                    Server <FaGithub />
+                  </a>
+                )}
               </div>
             </div>
           </motion.div>

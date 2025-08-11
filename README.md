@@ -38,6 +38,22 @@ It showcases my projects, skills, education, and provides contact information.
    ```
    Open [http://localhost:5173](http://localhost:5173) in your browser.
 
+## 📂 Directory Structure
+
+```
+src/
+  ├── assets/           # Images and static files
+  ├── poryfolio/        # Main portfolio components
+  │     ├── About.jsx
+  │     ├── Contact.jsx
+  │     ├── Hero.jsx
+  │     ├── Projects.jsx
+  │     ├── Skills.jsx
+  │     ├── Education.jsx
+  │     └── Portfolio.jsx
+  └── main.jsx          # App entry point
+```
+
 ## 📧 Contact
 
 - Email: alamin.rahman87@gmail.com

@@ -22,6 +22,14 @@ const allProjects = [
     githubLink: "https://github.com/alamin-87/SkillBridge-client",
     serverLink: "https://github.com/alamin-87/SkillBridge-server",
     tag: "Next.js + Stripe",
+    year: "2025",
+    techStack: "Next.js 16 · TypeScript · React 19 · Tailwind CSS 4 · Node.js · Express.js · PostgreSQL · Prisma · Firebase Auth · Cloudinary · Stripe · React Hook Form · Zod",
+    features: [
+      "Built the entire frontend in Next.js with App Router - SSR for public pages, client components for dashboards - using React Hook Form and Zod for validation on every form: sign up, profile edit, session booking, and payment. Client-side errors surface instantly; server errors map back cleanly to the right field.",
+      "Handled file uploads through Cloudinary - tutors upload profile photos and assignment PDFs via a drag-and-drop component with client-side file type and size validation before anything hits the server.",
+      "Wired Stripe webhooks to automate post-payment work: confirmation emails via Nodemailer, meeting link creation, and tutor earnings updates - no manual steps required after checkout.",
+      "Deployed frontend on Vercel and backend on Render with environment-separated configs; wrote Prisma migrations as the schema evolved so no data was ever lost during iteration."
+    ]
   },
   {
     title: "Domexis",
@@ -32,6 +40,13 @@ const allProjects = [
     githubLink: "https://github.com/alamin-87/Domexios-client-site",
     serverLink: "https://github.com/alamin-87/Domexios-server-site",
     tag: "React + Gemini AI",
+    year: "2025",
+    techStack: "React 19 · Vite · JavaScript · TypeScript · Tailwind CSS · Node.js · Express.js · MongoDB · Firebase Admin SDK · Gemini 2.0 · Cloudinary · GSAP · Framer Motion · Stripe",
+    features: [
+      "Designed and implemented a 4-tier RBAC system (Guest, User, Member, Admin) with Firebase Admin SDK token verification on every protected Express.js endpoint - a User token cannot reach an Admin route even if someone tries to force it.",
+      "Built a real-time AI chatbot by connecting Google Gemini 2.0 Flash through a REST endpoint that injects live MongoDB property data into the prompt - residents get accurate, property-specific answers rather than generic AI responses.",
+      "Optimized MongoDB queries with compound indexes on the most-queried collections; dashboard load times dropped noticeably and Lighthouse performance scores improved across mobile and desktop. TanStack Query v5 caching handles stale data gracefully without over-fetching."
+    ]
   },
   {
     title: "DishDrop",
@@ -42,6 +57,12 @@ const allProjects = [
     githubLink: "https://github.com/alamin-87/food-sharing-client-site",
     serverLink: "https://github.com/alamin-87/food-sharing-server-site",
     tag: "MERN Stack",
+    year: "2024",
+    techStack: "React.js · JavaScript · Node.js · Express.js · MongoDB · Firebase Auth · JWT · Tailwind CSS · React Hook Form · Netlify · Render",
+    features: [
+      "Shipped the full platform solo: React frontend with React Hook Form for listing creation and edit flows, a Node.js/Express.js REST API, and MongoDB Atlas - from first commit to live deployment in a few weeks.",
+      "JWT tokens stored in HTTP-only cookies; Axios interceptors attach the token on every request automatically, so protected routes work consistently without repeating auth logic across components. MongoDB indexes on status and date fields cut API response times by around 40%."
+    ]
   },
   // Duplicating for pagination demo (as per user request)
   {
@@ -208,7 +229,7 @@ const Projects = () => {
             <div
               key={`${currentPage}-${idx}`}
               ref={(el) => (cardsRef.current[idx] = el)}
-              className="glass-card flex flex-col group shadow-2xl transition-all duration-700"
+              className="glass-card flex flex-col group shadow-2xl transition-all duration-700 relative overflow-hidden"
             >
               <div className="h-56 overflow-hidden relative">
                 <img
@@ -224,13 +245,51 @@ const Projects = () => {
                     opacity: 0.9,
                   }}
                 />
-                <span className="absolute top-6 left-6 px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl bg-primary/10 text-primary border border-primary/20 backdrop-blur-xl">
+                <span className="absolute top-6 left-6 px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl bg-primary/10 text-primary border border-primary/20 backdrop-blur-xl z-10 group-hover:opacity-0 transition-opacity duration-300">
                   {project.tag}
                 </span>
               </div>
 
-              <div className="p-2 lg:p-4 flex flex-col justify-between flex-grow">
-                <div>
+              {/* Hover Details Overlay (Covers Entire Card) */}
+              <div className="absolute inset-0 bg-slate-900 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20 pointer-events-none group-hover:pointer-events-auto flex flex-col p-6 pb-24 shadow-[inset_0_0_100px_rgba(0,0,0,0.5)]">
+                
+                {/* Fixed Header */}
+                <div className="flex-shrink-0">
+                  {project.year && (
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-sm font-bold text-white tracking-widest uppercase">Tech Stack</span>
+                      <span className="text-xs font-black text-primary bg-primary/10 px-3 py-1.5 rounded-md border border-primary/20">{project.year}</span>
+                    </div>
+                  )}
+
+                  {project.techStack && (
+                    <p className="text-sm font-medium text-slate-200 leading-relaxed mb-5 pb-4 border-b border-slate-700">
+                      {project.techStack}
+                    </p>
+                  )}
+                </div>
+
+                {/* Scrollable Features */}
+                <div className="flex-1 overflow-y-auto min-h-0 pr-3 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-slate-800 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-400 hover:[&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full [scrollbar-width:thin] [scrollbar-color:#94a3b8_#1e293b]">
+                  {project.features && project.features.length > 0 ? (
+                    <ul className="text-white text-sm space-y-5 list-none pb-4">
+                      {project.features.map((feature, i) => (
+                        <li key={i} className="flex gap-3 leading-relaxed">
+                          <span className="text-primary mt-1.5 text-[10px] flex-shrink-0">▶</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div className="flex items-center justify-center h-full">
+                      <p className="text-slate-400 text-sm font-medium tracking-wide">Explore Project</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="p-4 flex flex-col justify-between flex-grow">
+                <div className="relative z-10 transition-opacity duration-300 group-hover:opacity-0">
                   <h3 className="text-2xl font-black mb-3 tracking-tight text-white">
                     {project.title}
                   </h3>
@@ -238,7 +297,7 @@ const Projects = () => {
                     {project.description}
                   </p>
                 </div>
-                <div className="flex items-center gap-4 mt-auto">
+                <div className="flex items-center gap-4 mt-auto relative z-30">
                   <a
                     href={project.liveLink}
                     target="_blank"

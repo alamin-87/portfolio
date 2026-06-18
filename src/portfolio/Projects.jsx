@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import SkillBridge from "../assets/SkillBridge.png";
+import Domexis from "../assets/Domexis.png";
+import DishDrop from "../assets/DishDrop.png";
 import GardeningHub from "../assets/Gardening Hub.jpeg";
 import FoodSharing from "../assets/Food Sharing.jpeg";
 import EnglishDictionary from "../assets/English Dictionary.jpeg";
@@ -11,33 +14,34 @@ gsap.registerPlugin(ScrollTrigger);
 
 const allProjects = [
   {
-    title: "Gardening Hub",
+    title: "SkillBridge",
     description:
-      "A community platform where users can share gardening tips, explore ideas, and connect with top gardeners.",
-    image: GardeningHub,
-    liveLink: "https://gardening-hub.netlify.app/",
-    githubLink: "https://github.com/alamin-87/b11a10-client-site",
-    serverLink: "https://github.com/alamin-87/gardening-server-store",
-    tag: "Community App",
+      "A full-stack marketplace & workflow automation platform featuring Next.js (App Router) with SSR for public pages, drag-and-drop Cloudinary file uploads, secure Zod validations, and automated Stripe webhooks.",
+    image: SkillBridge,
+    liveLink: "http://skillbridge-client-delta.vercel.app/",
+    githubLink: "https://github.com/alamin-87/SkillBridge-client",
+    serverLink: "https://github.com/alamin-87/SkillBridge-server",
+    tag: "Next.js + Stripe",
   },
   {
-    title: "Food Sharing",
+    title: "Domexis",
     description:
-      "Share leftover food with others, request meals, and reduce waste while helping your community.",
-    image: FoodSharing,
+      "An AI-powered conversational portal and management system featuring a 4-tier RBAC system, real-time Gemini 2.0 chatbot injecting live MongoDB property data, and compound indexes for fast queries.",
+    image: Domexis,
+    liveLink: "https://buildingmanagement-app.netlify.app/",
+    githubLink: "https://github.com/alamin-87/Domexios-client-site",
+    serverLink: "https://github.com/alamin-87/Domexios-server-site",
+    tag: "React + Gemini AI",
+  },
+  {
+    title: "DishDrop",
+    description:
+      "A solo-built MERN community food sharing platform with JWT auth stored in HTTP-only cookies, Axios interceptor request injection, and MongoDB indexes cutting API response times by 40%.",
+    image: DishDrop,
     liveLink: "https://food-sharing.netlify.app/",
     githubLink: "https://github.com/alamin-87/food-sharing-client-site",
     serverLink: "https://github.com/alamin-87/food-sharing-server-site",
-    tag: "TypeScript + AWS",
-  },
-  {
-    title: "English Dictionary",
-    description:
-      "Interactive dictionary app with real-time word lookup, synonyms, and phonetics. Powered by a high-availability Docker architecture.",
-    image: EnglishDictionary,
-    liveLink: "https://alamin-87.github.io/english-dictionary/",
-    githubLink: "https://github.com/alamin-87/english-dictionary",
-    tag: "Next.js + Docker",
+    tag: "MERN Stack",
   },
   // Duplicating for pagination demo (as per user request)
   {
@@ -45,8 +49,9 @@ const allProjects = [
     description:
       "A platform for local communities to organize events and share resources efficiently.",
     image: GardeningHub,
-    liveLink: "#",
-    githubLink: "#",
+    liveLink: "https://gardening-hub.netlify.app/",
+    githubLink: "https://github.com/alamin-87/b11a10-client-site",
+    serverLink:"https://github.com/alamin-87/gardening-server-store",
     tag: "Prisma + SQL",
   },
   {
@@ -54,8 +59,9 @@ const allProjects = [
     description:
       "Monitor your carbon footprint and get suggestions for a greener lifestyle.",
     image: FoodSharing,
-    liveLink: "#",
-    githubLink: "#",
+    liveLink: "https://food-sharing.netlify.app/",
+    githubLink: "https://github.com/alamin-87/food-sharing-client-site",
+    serverLink:"https://github.com/alamin-87/food-sharing-server-site",
     tag: "Sustainability",
   },
   {
@@ -277,7 +283,7 @@ const Projects = () => {
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 border border-white/5 ${currentPage === 1 ? "opacity-20 cursor-not-allowed" : "bg-white/5 hover:border-primary/40 hover:bg-primary/5 active:scale-95"}`}
+              className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 border border-white/5 text-white ${currentPage === 1 ? "opacity-20 cursor-not-allowed" : "bg-white/5 hover:border-primary/40 hover:bg-primary/5 active:scale-95"}`}
             >
               <svg
                 className="w-6 h-6"
@@ -309,7 +315,7 @@ const Projects = () => {
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 border border-white/5 ${currentPage === totalPages ? "opacity-20 cursor-not-allowed" : "bg-white/5 hover:border-primary/40 hover:bg-primary/5 active:scale-95"}`}
+              className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 border border-white/5 text-white ${currentPage === totalPages ? "opacity-20 cursor-not-allowed" : "bg-white/5 hover:border-primary/40 hover:bg-primary/5 active:scale-95"}`}
             >
               <svg
                 className="w-6 h-6"
